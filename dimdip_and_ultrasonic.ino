@@ -2,7 +2,7 @@ int vcc = 2; //attach pin 2 to vcc
 int trig = 3; // attach pin 3 to Trig
 int echo = 4; //attach pin 4 to Echo
 int gnd = 5; //attach pin 5 to GND
-int ut = 550, lt = 450;
+int ut = 150, lt = 100;
 
 #include <Wire.h>
 
@@ -10,8 +10,8 @@ void setup() {
 
   pinMode (vcc, OUTPUT);
   pinMode (gnd, OUTPUT);
-  pinMode(13, OUTPUT);
-  digitalWrite(13, LOW);
+  pinMode(12, OUTPUT);
+  digitalWrite(12, LOW);
   // initialize serial communication:
   Serial.begin(9600);
 
@@ -53,13 +53,13 @@ void loop()
 
   if ((analogRead(0) > ut))
   {
-    digitalWrite(13, LOW);
+    digitalWrite(12, LOW);
     prev_dip = millis();
     Serial.println("        DIM");
   }
   else if (analogRead(0) < lt && ((millis() - prev_dip) > 2000))
   {
-    digitalWrite(13, HIGH);
+    digitalWrite(12, HIGH);
     Serial.println("         Bright");
   }
 }
